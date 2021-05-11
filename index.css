@@ -1,0 +1,19 @@
+#master-card-list{
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.project-card{
+    display: block;
+    max-width: 30%;
+    border: 2px solid black;
+    margin: 2%;
+    text-align: center;
+}
+.user-card{
+    display: block;
+    max-width: 30%;
+    border: 2px solid black;
+    margin: 2%;
+    text-align: center;
+}
