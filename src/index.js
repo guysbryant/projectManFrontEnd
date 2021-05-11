@@ -4,14 +4,13 @@ const usersUrl = baseUrl + "/users";
 document.addEventListener("DOMContentLoaded",() => {
     getProjectsIndex(projectsUrl);
     addLoadProjectsListener();
-    getUsersIndex(usersUrl);
     addLoadUsersListener();
 });
 
 const getProjectsIndex = (url) =>{
     fetch(url)
         .then(response => response.json())
-        .then(projects => projects.data.forEach(project => new Project(project).render()));
+        .then(projects => projects.data.forEach(project => new Project(project).renderProject()));
 };
 
 const addLoadProjectsListener = () =>{
@@ -30,6 +29,6 @@ const getUsersIndex = (url) =>{
 const addLoadUsersListener = () =>{
     document.querySelector("#users-link").addEventListener("click", () =>{
         document.querySelector("#master-card-list").innerHTML = "<h1>Users</h1>";
-        getProjectsIndex(usersUrl);
+        getUsersIndex(usersUrl);
     });
 };
