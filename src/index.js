@@ -18,6 +18,7 @@ const getProjectsIndex = (url) =>{
 const addLoadProjectsListener = () =>{
     document.querySelector("#projects-link").addEventListener("click", () =>{
         master.innerHTML = "<h1>Projects</h1>";
+        addCreateProjectButton();
         getProjectsIndex(projectsUrl);
     });
 };
@@ -59,7 +60,9 @@ const postProjectsCreate = (data) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data)
-    });
+    })
+        .then(response => response.json())
+        .then(project => new Project(project.data).renderProject());
 };
 
 const loadForm = () => {
