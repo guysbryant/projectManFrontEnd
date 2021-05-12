@@ -14,12 +14,13 @@ const getProjectsIndex = (url) =>{
         .then(projects => projects.data.forEach(project => new Project(project).renderProject()));
 };
 
-const addLoadProjectsListener = () =>{
-    Helper.addClick(document.querySelector("#projects-link"), () => {
-        Helper.master().innerHTML = "<h1>Projects</h1>";
-        addCreateProjectButton();
-        getProjectsIndex(projectsUrl);
-    });
+const addLoadProjectsListener = () =>
+      Helper.addClick(document.querySelector("#projects-link"), () => loadProjects());
+
+const loadProjects = () => {
+    Helper.master().innerHTML = "<h1>Projects</h1>";
+    addCreateProjectButton();
+    getProjectsIndex(projectsUrl);
 };
 
 const getUsersIndex = (url) =>{
@@ -54,7 +55,9 @@ const postProjectsCreate = (form) => {
         body: JSON.stringify(data)
     })
         .then(response => response.json())
-        .then(project => new Project(project.data).renderProject());
+        .then(project => new Project(project.data))
+        .catch(errors => console.log(errors));
+    loadProjects();
 };
 
 const getFormData = (form) => {
