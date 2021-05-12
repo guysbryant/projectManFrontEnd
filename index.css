@@ -2,10 +2,9 @@
     max-width: 90%;
     margin: 0 auto;
 }
-
 .project-card{
     display: block;
-    max-width: 30%;
+    max-width: 80%;
     border: 2px solid black;
     margin: 2%;
     text-align: center;
@@ -16,4 +15,21 @@
     border: 2px solid black;
     margin: 2%;
     text-align: center;
+}
+.task-card-list{
+    max-width: 80%;
+    margin: 0 auto;
+}
+.task-card{
+    max-width: 40%;
+    border: 2px solid black;
+    margin: 2%;
+    text-align: center;
+}
+.inline-block{
+    display: inline-block;
+    min-width: 20%;
+}
+.smaller-font{
+    font-size: .75em;
 }
