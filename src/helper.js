@@ -20,4 +20,19 @@ class Helper {
     static addClick = (parent, callBack) => parent.addEventListener("click", callBack)
 
     static master = () => document.querySelector("#master-card-list")
+
+    static loadForm = () => {
+        const formDiv = document.createElement("div");
+        this.master().innerHTML = "<h1>Create A New Project</h1>";
+        this.master().appendChild(formDiv);
+
+        this.textInputMaker("Project Name", "name", formDiv);
+        this.appendBr(formDiv);
+        this.appendBr(formDiv);
+
+        this.textInputMaker("Project Description", "description", formDiv);
+        this.appendBr(formDiv);
+        this.appendBr(formDiv);
+        return formDiv;
+    }
 }

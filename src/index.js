@@ -40,11 +40,12 @@ const addCreateProjectButton = () => {
 };
 
 const createProject = () => {
-    const formDiv = loadForm();
-    Helper.buttonMaker(() => postProjectsCreate(getFormData(formDiv)), "Create Project", formDiv);
+    const formDiv = Helper.loadForm();
+    Helper.buttonMaker(() => postProjectsCreate(formDiv), "Create Project", formDiv);
 };
 
-const postProjectsCreate = (data) => {
+const postProjectsCreate = (form) => {
+    const data = getFormData(form);
     fetch(projectsUrl, {
               method: "POST",
         headers: {
@@ -55,22 +56,6 @@ const postProjectsCreate = (data) => {
         .then(response => response.json())
         .then(project => new Project(project.data).renderProject());
 };
-
-const loadForm = () => {
-    const formDiv = document.createElement("div");
-    Helper.master().innerHTML = "<h1>Create A New Project</h1>";
-    Helper.master().appendChild(formDiv);
-
-    Helper.textInputMaker("Project Name", "name", formDiv);
-    Helper.appendBr(formDiv);
-    Helper.appendBr(formDiv);
-
-    Helper.textInputMaker("Project Description", "description", formDiv);
-    Helper.appendBr(formDiv);
-    Helper.appendBr(formDiv);
-    return formDiv;
-};
-
 
 const getFormData = (form) => {
     return {
