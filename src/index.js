@@ -2,7 +2,6 @@ const baseUrl = "http://localhost:3000/api/v1";
 const projectsUrl = baseUrl + "/projects";
 const usersUrl = baseUrl + "/users";
 document.addEventListener("DOMContentLoaded",() => {
-    master = document.querySelector("#master-card-list");
     getProjectsIndex(projectsUrl);
     addLoadProjectsListener();
     addLoadUsersListener();
@@ -16,8 +15,8 @@ const getProjectsIndex = (url) =>{
 };
 
 const addLoadProjectsListener = () =>{
-    document.querySelector("#projects-link").addEventListener("click", () =>{
-        master.innerHTML = "<h1>Projects</h1>";
+    Helper.addClick(document.querySelector("#projects-link"), () => {
+        Helper.master().innerHTML = "<h1>Projects</h1>";
         addCreateProjectButton();
         getProjectsIndex(projectsUrl);
     });
@@ -30,27 +29,19 @@ const getUsersIndex = (url) =>{
 };
 
 const addLoadUsersListener = () =>{
-    document.querySelector("#users-link").addEventListener("click", () =>{
-        master.innerHTML = "<h1>Users</h1>";
+    Helper.addClick(document.querySelector("#users-link"), () => {
+        Helper.master().innerHTML = "<h1>Users</h1>";
         getUsersIndex(usersUrl);
     });
 };
 
 const addCreateProjectButton = () => {
-    buttonMaker(() => createProject(), "Create A New Project", master);
-};
-
-const buttonMaker = (callBack, value, parent) => {
-    let button = document.createElement("input");
-    button.type = "submit";
-    button.addEventListener("click", callBack);
-    button.value = value;
-    parent.appendChild(button);
+    Helper.buttonMaker(() => createProject(), "Create A New Project", Helper.master());
 };
 
 const createProject = () => {
     const formDiv = loadForm();
-    buttonMaker(() => postProjectsCreate(getFormData(formDiv)), "Create Project", formDiv);
+    Helper.buttonMaker(() => postProjectsCreate(getFormData(formDiv)), "Create Project", formDiv);
 };
 
 const postProjectsCreate = (data) => {
@@ -67,18 +58,19 @@ const postProjectsCreate = (data) => {
 
 const loadForm = () => {
     const formDiv = document.createElement("div");
-    master.innerHTML = "<h1>Create A New Project</h1>";
-    master.appendChild(formDiv);
+    Helper.master().innerHTML = "<h1>Create A New Project</h1>";
+    Helper.master().appendChild(formDiv);
 
-    textInputMaker("Project Name", "name", formDiv);
-    appendBr(formDiv);appendBr(formDiv);
+    Helper.textInputMaker("Project Name", "name", formDiv);
+    Helper.appendBr(formDiv);
+    Helper.appendBr(formDiv);
 
-    textInputMaker("Project Description", "description", formDiv);
-    appendBr(formDiv);appendBr(formDiv);
+    Helper.textInputMaker("Project Description", "description", formDiv);
+    Helper.appendBr(formDiv);
+    Helper.appendBr(formDiv);
     return formDiv;
 };
 
-const appendBr = (parent) => parent.appendChild(document.createElement("br"));
 
 const getFormData = (form) => {
     return {
@@ -86,11 +78,3 @@ const getFormData = (form) => {
         description: form.querySelector("#description").value
     };
 };
-
-const textInputMaker = (text, id, parent) => {
-    let name = document.createElement("input");
-    parent.append(name);
-    name.type = "text";
-    name.id = id;
-    name.placeholder = text;
-}
