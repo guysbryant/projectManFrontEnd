@@ -20,7 +20,8 @@ const addLoadProjectsListener = () =>
 const loadProjects = () => {
     Helper.master().innerHTML = "<h1>Projects</h1>";
     addCreateProjectButton();
-    getProjectsIndex(projectsUrl);
+    // getProjectsIndex(projectsUrl);
+    Project.all.forEach(project => project.renderProject());
 };
 
 const getUsersIndex = (url) =>{
@@ -55,9 +56,11 @@ const postProjectsCreate = (form) => {
         body: JSON.stringify(data)
     })
         .then(response => response.json())
-        .then(project => new Project(project.data))
+        .then(project => {
+            new Project(project.data);
+            loadProjects();
+        })
         .catch(errors => console.log(errors));
-    loadProjects();
 };
 
 const getFormData = (form) => {
