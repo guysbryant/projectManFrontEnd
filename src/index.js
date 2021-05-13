@@ -6,7 +6,12 @@ document.addEventListener("DOMContentLoaded",() => {
     addLoadProjectsListener();
     addLoadUsersListener();
     addCreateProjectButton();
+    toggleDarkMode();
 });
+
+const toggleDarkMode = () => {
+    Helper.buttonMaker(() => Helper.toggleDarkMode(), "Toggle Dark Mode", Helper.master());
+}
 
 const getProjectsIndex = (url) =>{
     fetch(url)

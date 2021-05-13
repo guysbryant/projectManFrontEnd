@@ -33,3 +33,12 @@
 .smaller-font{
     font-size: .75em;
 }
+.dark-mode{
+    background-color: black;
+    color: white;
+}
+
+.white-mode{
+    background-color: white;
+    color: black;
+}

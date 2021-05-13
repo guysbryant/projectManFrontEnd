@@ -1,4 +1,11 @@
 class Helper {
+    static toggleDarkMode = () => {
+        const body = this.getBody();
+        body.className === "dark-mode" ? body.className = "white-mode" : body.className = "dark-mode";
+    }
+
+    static getBody = () => document.getElementsByTagName("body")[0];
+
     static buttonMaker = (callBack, value, parent) => {
         let button = document.createElement("input");
         button.type = "submit";
