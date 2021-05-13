@@ -1,8 +1,9 @@
 class Helper {
     static toggleDarkMode = () => {
+        this.buttonMaker(() => {
         const body = this.getBody();
         body.className === "dark-mode" ? body.className = "white-mode" : body.className = "dark-mode";
-    }
+                        }, "Toggle Dark Mode", Helper.master());};
 
     static getBody = () => document.getElementsByTagName("body")[0];
 
